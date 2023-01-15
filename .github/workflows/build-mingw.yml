@@ -37,8 +37,8 @@ jobs:
           export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin" &&
           cd portaudio &&
           g++ --version &&
-          ./configure --prefix="$(pwd)/${{ env.installationPath }}" &&
-          make && make install-recursive && ls
+          ./configure --enable-cxx --prefix="$(pwd)/${{ env.installationPath }}" &&
+          make && make install && ls
           
       - name: Archive Release
         uses: thedoctor0/zip-release@master
