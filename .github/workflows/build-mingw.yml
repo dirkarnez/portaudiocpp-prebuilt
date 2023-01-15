@@ -38,21 +38,18 @@ jobs:
           cd portaudio &&
           g++ --version &&
           ./configure --prefix="$(pwd)/${{ env.installationPath }}" &&
-          make && make install && 
-          cd /bindings/cpp/ && 
-          ./configure --prefix="$(pwd)/${{ env.installationPath }}" &&
-          make && make install
-            
+          make && make install-recursive
+          
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: "portaudio/bindings/cpp/${{ env.installationPath }}"
+          directory: "portaudio/${{ env.installationPath }}"
           filename: "${{ env.mingwTargetZip }}"
         
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "portaudio/bindings/cpp/${{ env.installationPath }}/${{ env.mingwTargetZip }}"
+          artifacts: "portaudio/${{ env.installationPath }}/${{ env.mingwTargetZip }}"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
