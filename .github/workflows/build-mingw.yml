@@ -37,7 +37,7 @@ jobs:
           export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin" &&
           cd portaudio &&
           g++ --version &&
-          ./configure --enable-cxx --enable_shared --enable_static --prefix="$(pwd)/${{ env.installationPath }}" &&
+          ./configure --enable-cxx --enable-shared --enable-static --prefix="$(pwd)/${{ env.installationPath }}" &&
           make && make install && ls
           
       - name: Archive Release
